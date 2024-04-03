@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>DB Informations</h1>
+{% if data %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Roll</th>
+            <th scope="col">Student Name</th>
+            <!-- <th scope="col">Father's Name</th> -->
+            <th scope="col">Address</th>
+            <th scope="col">Birth Date</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for st in data %}
+        <tr>
+            <td>{{st.roll}}</td>
+            <td>{{st.name}}</td>
+            <!-- <td>{{st.father_name}}</td> -->
+            <td>{{st.address}}</td>
+            <td>{{st.birth_date}}</td>  
+            <td>{{st.boolean_field}}</td>  
+            <td>{{st.date_time_field}}</td>  
+            <td>{{st.email_field}}</td>  
+            <td>{{st.image_field}}</td>  
+            <td><a class="btn btn-danger text-white" href="{% url 'delete_student' st.roll %}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% else %}
+<h3>No data available to show</h3>
+{% endif %}
+
+{% endblock %}
